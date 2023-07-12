@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Coin {
+  id       Int           @id @default(autoincrement())
+  nome     String
+  wallets  WalletCoins[]
+  walletId Int?
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  wallets   Wallet[]
+  createdAt DateTime  @map(name: "created_at")
+  updatedAt DateTime  @map(name: "updated_at")
+  deletedAt DateTime? @map(name: "deleted_at")
+}
+
+model Wallet {
+  id          Int           @id @default(autoincrement())
+  nome        String
+  userId      Int?
+  user        User?         @relation(fields: [userId], references: [id])
+  WalletCoins WalletCoins[]
+}
+
+model WalletCoins {
+  id       Int    @id @default(autoincrement())
+  amount   Int
+  walletId Int
+  coinId   Int
+  wallet   Wallet @relation(fields: [walletId], references: [id])
+  coin     Coin   @relation(fields: [coinId], references: [id])
+}
