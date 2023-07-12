@@ -28,10 +28,12 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/express": "^4.17.17",
+    "@types/faker": "^6.6.9",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/supertest": "^2.0.12",
@@ -68,7 +70,8 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "prisma":{
-    "schema":"./src/database/prisma/schema.prisma"
+  "prisma": {
+    "schema": "./src/database/prisma/schema.prisma",
+    "seed": "ts-node ./src/database/prisma/seeds/seeds.ts"
   }
 }

@@ -11,33 +11,32 @@ datasource db {
 }
 
 model Coin {
-  id       Int           @id @default(autoincrement())
-  nome     String
-  wallets  WalletCoins[]
-  walletId Int?
+  id      Int           @id @default(autoincrement())
+  name    String
+  tiker   String
+  value   String
+  wallets WalletCoins[]
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
   email     String
   wallets   Wallet[]
-  createdAt DateTime  @map(name: "created_at")
-  updatedAt DateTime  @map(name: "updated_at")
-  deletedAt DateTime? @map(name: "deleted_at")
+  createdAt DateTime @map(name: "created_at")
+  updatedAt DateTime @map(name: "updated_at")
 }
 
 model Wallet {
   id          Int           @id @default(autoincrement())
-  nome        String
-  userId      Int?
-  user        User?         @relation(fields: [userId], references: [id])
+  userId      Int
+  user        User          @relation(fields: [userId], references: [id])
   WalletCoins WalletCoins[]
 }
 
 model WalletCoins {
   id       Int    @id @default(autoincrement())
-  amount   Int
+  quantity Int
   walletId Int
   coinId   Int
   wallet   Wallet @relation(fields: [walletId], references: [id])
