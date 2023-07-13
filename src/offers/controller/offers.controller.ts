@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   Headers,
+  Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { OffersUseCase } from '../useCase/offers.useCase';
 import { CreateOfferDto } from '../dto/create-offer.dto';
@@ -23,23 +25,16 @@ export class OffersController {
     return this.offersUseCase.create(+userId, createOfferDto);
   }
 
-  /*   @Get()
-  findAll() {
-    return this.offersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.offersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOfferDto: UpdateOfferDto) {
-    return this.offersService.update(+id, updateOfferDto);
+  @Get()
+  findAll(
+    @Query('items', new ParseIntPipe()) items?: number,
+    @Query('page', new ParseIntPipe()) page?: number,
+  ) {
+    return this.offersUseCase.listOffers(items, page);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.offersService.remove(+id);
-  } */
+  remove(@Param('id') id: string, @Headers('user-id') userId: string) {
+    return this.offersUseCase.removeOffer(+id, +userId);
+  }
 }
