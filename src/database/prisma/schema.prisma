@@ -16,7 +16,7 @@ model Coin {
   tiker   String
   value   String
   wallets WalletCoins[]
-  Offers  Offers[]
+  offers  Offers[]
 }
 
 model User {
@@ -26,13 +26,14 @@ model User {
   wallets   Wallet[]
   createdAt DateTime @map(name: "created_at")
   updatedAt DateTime @map(name: "updated_at")
+  Offers    Offers[]
 }
 
 model Wallet {
   id          Int           @id @default(autoincrement())
   userId      Int
   user        User          @relation(fields: [userId], references: [id])
-  WalletCoins WalletCoins[]
+  walletCoins WalletCoins[]
 }
 
 model WalletCoins {
@@ -48,10 +49,12 @@ model Offers {
   id        Int       @id @default(autoincrement())
   quantity  Int
   coinId    Int
+  userId    Int
   unitPrice Int
   createdAt DateTime  @map(name: "created_at")
   updatedAt DateTime  @updatedAt @map(name: "updated_at")
   deletedAt DateTime? @map(name: "deleted_at")
 
   coin Coin @relation(fields: [coinId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }

@@ -6,21 +6,24 @@ import {
   Patch,
   Param,
   Delete,
+  Headers,
 } from '@nestjs/common';
-import { OffersService } from './offers.service';
-import { CreateOfferDto } from './dto/create-offer.dto';
-import { UpdateOfferDto } from './dto/update-offer.dto';
+import { OffersUseCase } from '../useCase/offers.useCase';
+import { CreateOfferDto } from '../dto/create-offer.dto';
 
 @Controller('offers')
 export class OffersController {
-  constructor(private readonly offersService: OffersService) {}
+  constructor(private readonly offersUseCase: OffersUseCase) {}
 
   @Post()
-  create(@Body() createOfferDto: CreateOfferDto) {
-    return this.offersService.create(createOfferDto);
+  create(
+    @Body() createOfferDto: CreateOfferDto,
+    @Headers('user-id') userId: string,
+  ) {
+    return this.offersUseCase.create(+userId, createOfferDto);
   }
 
-  @Get()
+  /*   @Get()
   findAll() {
     return this.offersService.findAll();
   }
@@ -38,5 +41,5 @@ export class OffersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.offersService.remove(+id);
-  }
+  } */
 }
