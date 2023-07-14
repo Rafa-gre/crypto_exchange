@@ -53,23 +53,11 @@ Neste projeto, foram adotadas as seguintes tecnologias:
 
 - **SQLite**: Um banco de dados relacional embutido que oferece um alto desempenho e não requer configurações complexas. A escolha do SQLite se deu pela sua portabilidade e facilidade de uso em ambientes de desenvolvimento e teste, eliminando a necessidade de configurar e gerenciar um servidor de banco de dados separado.
 
-### Justificativas
-
-A seleção dessas tecnologias foi baseada em uma análise criteriosa dos requisitos do projeto e nas melhores práticas de desenvolvimento de APIs. Veja as principais justificativas para cada uma delas:
-
-- **NestJS**: O NestJS foi escolhido devido à sua abordagem modular e sua arquitetura baseada em módulos, controladores e provedores de serviços. Essa estrutura promove a separação de responsabilidades, a reutilização de código e a escalabilidade da aplicação, facilitando a manutenção e a evolução do sistema.
-
-- **Prisma**: A escolha do Prisma foi motivada pela sua facilidade de uso e pela produtividade que oferece. Com o Prisma, é possível gerar automaticamente os modelos de dados a partir do esquema do banco de dados e executar consultas complexas de forma eficiente. Além disso, o suporte nativo ao TypeScript garante um código robusto e seguro, com verificação de tipos em tempo de compilação.
-
-- **SQLite**: A adoção do SQLite como banco de dados se deve à sua simplicidade e ao seu bom desempenho para aplicações de pequeno a médio porte. O SQLite não requer uma configuração complexa e permite que a aplicação seja facilmente implantada e executada em diferentes ambientes. Ele oferece suporte a consultas SQL completas e garante a integridade dos dados, mesmo em cenários de concorrência.
-
-Essas tecnologias foram selecionadas com base na sua maturidade, na comunidade ativa em torno delas e na capacidade de acelerar o desenvolvimento da aplicação, proporcionando uma base sólida para a construção do Balcão de Ofertas. Com o uso do NestJS, do Prisma e do SQLite, buscamos atingir uma arquitetura moderna, eficiente e segura, capaz de suportar a escalabilidade e as demandas do projeto. 
 
 ## Melhorias e Visão de Longo Prazo
 
 Aqui estão algumas sugestões de melhorias e considerações para o projeto:
 
-Melhoria na validação de entrada dos dados: É recomendado aprimorar a validação dos dados fornecidos pelos usuários para garantir a consistência e segurança das informações. Isso pode ser feito utilizando bibliotecas de validação, como o Joi ou o class-validator, para validar e sanitizar os dados de entrada, evitando problemas como injeção de código malicioso (SQL injection, XSS, etc.) e inconsistências nos dados armazenados.
 
 Implementação de cache: Utilizar um sistema de cache pode melhorar significativamente o desempenho da API, reduzindo a carga no banco de dados. Podemos utilizar uma solução de cache como o Redis para armazenar em memória os resultados das consultas mais frequentes, evitando consultas repetitivas ao banco de dados. O cache pode ser configurado com políticas de expiração adequadas para garantir que as informações estejam sempre atualizadas.
 
@@ -87,4 +75,4 @@ Este projeto está licenciado sob a Licença MIT.
 
 ## Contato
 
-Para qualquer dúvida ou informação adicional, sinta-se à vontade para entrar em contato com a equipe de desenvolvimento através do email [email protected]
+Para qualquer dúvida ou informação adicional, sinta-se à vontade para entrar em contato com a equipe de desenvolvimento através do email [rafael@gregorini.com.br]
