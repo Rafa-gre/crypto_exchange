@@ -65,14 +65,14 @@ export class OffersPrismaRepository implements IOffersRepository {
     }
   }
 
-  public getOfferById(offerId: number, userId: number): Promise<Offer> {
-    try {
-      return this.prisma.offers.findUnique({
+  public async getOfferById(offerId: number, userId: number): Promise<Offer> {
+    return this.prisma.offers
+      .findUnique({
         where: { id: offerId, userId, deletedAt: null },
+      })
+      .catch((e) => {
+        throw new BadRequestException(e);
       });
-    } catch (e) {
-      throw new BadRequestException(e);
-    }
   }
 
   public async updateOffer(offer: Offer, userId: number): Promise<void> {

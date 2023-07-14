@@ -4,6 +4,7 @@ import { IOffersRepository } from '../ports/offersRepository.interface';
 import { IWalletsRepository } from '../../wallets/ports/walletsRepository.interface';
 import { Offer } from '../models/offer.entity';
 import { CreateOfferDto } from '../dto/create-offer.dto';
+import { NotFoundException } from '@nestjs/common';
 
 describe('OffersUseCase', () => {
   let offersUseCase: OffersUseCase;
@@ -108,6 +109,57 @@ describe('OffersUseCase', () => {
       expect(offersRepository.findTodayUserOffers).toHaveBeenCalledWith(userId);
       expect(walletsRepository.findUserWallets).toHaveBeenCalledWith(userId);
       expect(offersRepository.createOffer).not.toHaveBeenCalled();
+    });
+  });
+  describe('listOffers', () => {
+    it('should return a list of offers', async () => {
+      const pageSize = 10;
+      const pageNumber = 1;
+      const expectedOffers: Offer[] = [];
+      offersRepository.findOffers = jest.fn().mockResolvedValue(expectedOffers);
+
+      const result = await offersUseCase.listOffers(pageSize, pageNumber);
+
+      expect(result).toEqual(expectedOffers);
+      expect(offersRepository.findOffers).toHaveBeenCalledWith(
+        pageSize,
+        pageNumber,
+      );
+    });
+  });
+  describe('removeOffer', () => {
+    it('should remove the offer and update the deletedAt field', async () => {
+      const offerId = 1;
+      const userId = 1;
+      const offer: Partial<Offer> = { id: offerId, userId /* ... */ };
+      offersRepository.getOfferById = jest.fn().mockResolvedValue(offer);
+      offer.deletedAt = new Date();
+      offersRepository.updateOffer = jest.fn().mockResolvedValue(offer);
+
+      await offersUseCase.removeOffer(offerId, userId);
+
+      expect(offersRepository.getOfferById).toHaveBeenCalledWith(
+        offerId,
+        userId,
+      );
+      expect(offersRepository.updateOffer).toHaveBeenCalledWith(
+        { ...offer, deletedAt: expect.any(Date) },
+        userId,
+      );
+    });
+
+    it('should throw NotFoundException if the offer is not found', async () => {
+      const offerId = 1;
+      const userId = 1;
+      offersRepository.getOfferById = jest.fn().mockResolvedValue(undefined);
+
+      await expect(
+        offersUseCase.removeOffer(offerId, userId),
+      ).rejects.toThrowError(NotFoundException);
+      expect(offersRepository.getOfferById).toHaveBeenCalledWith(
+        offerId,
+        userId,
+      );
     });
   });
 });
