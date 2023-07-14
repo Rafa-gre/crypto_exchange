@@ -43,6 +43,28 @@ A documentação das rotas pode ser encontrada em localhost:3000/api-docs
 
 Execute o comando `npm run test` para executar os testes automatizados da API. Os testes irão validar as funcionalidades principais da API, garantindo que as operações do Balcão de Ofertas estejam funcionando corretamente.
 
+## Tecnologias Utilizadas
+
+Neste projeto, foram adotadas as seguintes tecnologias:
+
+- **NestJS**: Um framework Node.js que segue os princípios do SOLID e adota uma arquitetura modular, facilitando o desenvolvimento de APIs escaláveis e bem estruturadas. A escolha do NestJS foi baseada em sua popularidade, na facilidade de uso e na capacidade de fornecer um código limpo e de fácil manutenção.
+
+- **Prisma**: Um ORM (Object-Relational Mapping) moderno que simplifica a interação com o banco de dados, oferecendo uma experiência de desenvolvimento ágil e produtiva. O Prisma permite gerar consultas SQL otimizadas e oferece suporte nativo ao TypeScript, garantindo um desenvolvimento seguro e livre de erros.
+
+- **SQLite**: Um banco de dados relacional embutido que oferece um alto desempenho e não requer configurações complexas. A escolha do SQLite se deu pela sua portabilidade e facilidade de uso em ambientes de desenvolvimento e teste, eliminando a necessidade de configurar e gerenciar um servidor de banco de dados separado.
+
+### Justificativas
+
+A seleção dessas tecnologias foi baseada em uma análise criteriosa dos requisitos do projeto e nas melhores práticas de desenvolvimento de APIs. Veja as principais justificativas para cada uma delas:
+
+- **NestJS**: O NestJS foi escolhido devido à sua abordagem modular e sua arquitetura baseada em módulos, controladores e provedores de serviços. Essa estrutura promove a separação de responsabilidades, a reutilização de código e a escalabilidade da aplicação, facilitando a manutenção e a evolução do sistema.
+
+- **Prisma**: A escolha do Prisma foi motivada pela sua facilidade de uso e pela produtividade que oferece. Com o Prisma, é possível gerar automaticamente os modelos de dados a partir do esquema do banco de dados e executar consultas complexas de forma eficiente. Além disso, o suporte nativo ao TypeScript garante um código robusto e seguro, com verificação de tipos em tempo de compilação.
+
+- **SQLite**: A adoção do SQLite como banco de dados se deve à sua simplicidade e ao seu bom desempenho para aplicações de pequeno a médio porte. O SQLite não requer uma configuração complexa e permite que a aplicação seja facilmente implantada e executada em diferentes ambientes. Ele oferece suporte a consultas SQL completas e garante a integridade dos dados, mesmo em cenários de concorrência.
+
+Essas tecnologias foram selecionadas com base na sua maturidade, na comunidade ativa em torno delas e na capacidade de acelerar o desenvolvimento da aplicação, proporcionando uma base sólida para a construção do Balcão de Ofertas. Com o uso do NestJS, do Prisma e do SQLite, buscamos atingir uma arquitetura moderna, eficiente e segura, capaz de suportar a escalabilidade e as demandas do projeto. 
+
 ## Melhorias e Visão de Longo Prazo
 
 Aqui estão algumas sugestões de melhorias e considerações para o projeto:

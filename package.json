@@ -4,7 +4,7 @@
   "description": "",
   "author": "Rafael Augusto Gregorini <rafael@gregorini.com.br>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
