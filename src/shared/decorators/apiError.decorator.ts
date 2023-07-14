@@ -18,7 +18,7 @@ export const ApiErrors = (codes: number[] = []) => {
     {
       code: 400,
       decorator: ApiBadRequestResponse({
-        description: 'Bad Request: Invalid Sintax',
+        description: 'Bad Request: Invalid Syntax',
         type: ErrorMessage,
       }),
     },

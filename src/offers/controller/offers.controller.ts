@@ -1,28 +1,27 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
   Headers,
-  Query,
+  Param,
   ParseIntPipe,
+  Post,
+  Query,
 } from '@nestjs/common';
-import { OffersUseCase } from '../useCase/offers.useCase';
-import { CreateOfferDto } from '../dto/create-offer.dto';
 import {
   ApiBody,
   ApiCreatedResponse,
   ApiHeader,
   ApiOperation,
-  ApiParam,
   ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { ApiErrors } from '../../decorators/apiError.decorator';
+import { ApiErrors } from '../../shared/decorators/apiError.decorator';
+import { CreateOfferDto } from '../dto/create-offer.dto';
 import { Offer } from '../models/offer.entity';
+import { OffersUseCase } from '../useCase/offers.useCase';
 
 @Controller('offers')
 @ApiTags('Offers')
